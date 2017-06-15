@@ -1,0 +1,40 @@
+{% set name = 'glue-ginga' %}
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version') %}
+{% set number = '0' %}
+
+about:
+    home: https://github.com/ejeschke/{{ name }}
+    license: BSD
+    summary: Astronomical data visualization
+
+build:
+    number: {{ number }}
+    string: {{ GIT_BUILD_STR }}_{{ number }}
+
+package:
+    name: {{ name }}
+    version: {{ version }}
+
+requirements:
+    build:
+    - astropy >=1.2
+    - glueviz >=*0.0*
+    - ginga >=2.6.1
+    - setuptools
+    - numpy
+    - python x.x
+
+    run:
+    - astropy >=1.2
+    - glueviz >=*0.0*
+    - ginga >=2.6.1
+    - numpy
+    - python x.x
+
+source:
+    git_url: https://github.com/ejeschke/{{ name }}.git
+
+test:
+    imports:
+    - glue_ginga
