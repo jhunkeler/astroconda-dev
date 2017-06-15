@@ -1,7 +1,6 @@
 {% set name = 'asdf-standard' %}
-{% set version = environ.get("GIT_DESCRIBE_TAG", "0.0.0")
-    +".dev"
-    +environ.get("GIT_DESCRIBE_NUMBER", "0") %}
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version') %}
 {% set number = '0' %}
 
 about:
@@ -11,6 +10,7 @@ about:
 
 build:
     number: {{ number }}
+    string: {{ GIT_BUILD_STR }}_{{ number }}
 
 package:
     name: {{ name }}
@@ -25,7 +25,7 @@ requirements:
     - six [py27|py3k]
     - setuptools
     - python x.x
-    
+
     run:
     - nose
     - astropy

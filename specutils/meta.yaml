@@ -1,7 +1,7 @@
 {% set name = 'specutils' %}
-{% set version = '0.2.1' %}
-{% set tag = 'v' + version %}
-{% set number = '1' %}
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version') %}
+{% set number = '0' %}
 
 about:
     home: https://github.com/astropy/specutils
@@ -14,9 +14,9 @@ package:
 
 build:
     number: {{ number }}
+    string: {{ GIT_BUILD_STR }}_{{ number }}
 
 source:
-    git_tag: {{ tag }}
     git_url: https://github.com/astropy/{{ name }}.git
 
 requirements:

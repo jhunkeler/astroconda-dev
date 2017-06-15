@@ -1,8 +1,7 @@
 {% set name = 'webbpsf' %}
-{% set version = environ.get("GIT_DESCRIBE_TAG", "0.0.0")
-    +".dev"
-    +environ.get("GIT_DESCRIBE_NUMBER", "0") %}
-{% set number = '1' %}
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version') %}
+{% set number = '0' %}
 
 # Keep in mind:
 #     webbpsf-data is version-locked to prevent older builds from picking
@@ -16,6 +15,7 @@ about:
 
 build:
     number: {{ number }}
+    string: {{ GIT_BUILD_STR }}_{{ number }}
     preserve_egg_dir: 'True'
 
 package:

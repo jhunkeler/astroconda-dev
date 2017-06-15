@@ -1,8 +1,7 @@
 {% set name = 'stsci.imagemanip' %}
-{% set version = environ.get("GIT_DESCRIBE_TAG", "0.0.0")
-    +".dev"
-    +environ.get("GIT_DESCRIBE_NUMBER", "0") %}
-{% set number = '1' %}
+{% set data = load_setup_py_data() %}
+{% set version = data.get('version') %}
+{% set number = '0' %}
 
 about:
     home: https://github.com/spacetelescope/{{ name }}
@@ -10,6 +9,7 @@ about:
     summary: stsci.imagemanip
 build:
     number: {{ number }}
+    string: {{ GIT_BUILD_STR }}_{{ number }}
     preserve_egg_dir: 'yes'
 
 package:
