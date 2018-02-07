@@ -21,14 +21,13 @@ package:
 requirements:
     build:
     - astropy
+    - pytest-runner
     - setuptools
     - numpy {{ numpy }}
     - python {{ python }}
 
     run:
     - astropy
-    - nose      # .tester
-    - pytest    # .tester
     - numpy
     - python
 
